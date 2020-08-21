@@ -1,12 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerBasic : MonoBehaviour
 {
     // PUBLIC
     public float speed = 1.0f;
     public bool canMove = false;
+    public Text scoreText;
+
+    // PRIVATE
+    private int score = 0;
 
     // EXTERN
     public GameObject camera;
@@ -16,6 +21,7 @@ public class PlayerBasic : MonoBehaviour
     {
         canMove = false;
         particles.SetActive(false);
+        score = 0;
     }
 
     void FixedUpdate()
@@ -54,6 +60,13 @@ public class PlayerBasic : MonoBehaviour
             particles.SetActive(true);
             particles.GetComponent<ParticleSystem>().time = 0;
             camera.GetComponent<CameraScript>().Win();
+        }
+        if (collision.gameObject.tag == "Sensor_WinPoint")
+        {
+            print("win score");
+            score++;
+            Destroy(collision.gameObject);
+            scoreText.text = score.ToString();
         }
     }
 }

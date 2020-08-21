@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Sensor_End
+  - Sensor_WinPoint
   layers:
   - Default
   - TransparentFX
