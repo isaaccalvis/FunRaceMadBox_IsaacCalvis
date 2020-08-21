@@ -57,6 +57,11 @@ public class PlayerBasic : MonoBehaviour
         {
             GetComponent<Rigidbody>().AddForce(new Vector3(1f, 0f, 0f) * speed);
         }
+
+        if (!GetComponent<Rigidbody>().IsSleeping())
+            GetComponentInChildren<Animator>().SetBool("running", true);
+        else
+            GetComponentInChildren<Animator>().SetBool("running", false);
     }
 
     private void OnCollisionEnter(Collision collision)
