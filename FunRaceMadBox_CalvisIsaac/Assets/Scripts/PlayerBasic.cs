@@ -4,15 +4,30 @@ using UnityEngine;
 
 public class PlayerBasic : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public float speed = 1.0f;
+
+    void FixedUpdate()
     {
-        
+        Movement();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Movement()
     {
-        
+        if (Input.GetKey("w"))
+        {
+            GetComponent<Rigidbody>().AddForce(new Vector3(0f,0f,1f) * speed);
+        }
+        if (Input.GetKey("s"))
+        {
+            GetComponent<Rigidbody>().AddForce(new Vector3(0f, 0f, -1f) * speed);
+        }
+        if (Input.GetKey("a"))
+        {
+            GetComponent<Rigidbody>().AddForce(new Vector3(-1f, 0f, 0f) * speed);
+        }
+        if (Input.GetKey("d"))
+        {
+            GetComponent<Rigidbody>().AddForce(new Vector3(1f, 0f, 0f) * speed);
+        }
     }
 }
