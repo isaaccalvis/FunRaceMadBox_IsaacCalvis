@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Sensor_End
   - Sensor_WinPoint
+  - Enemy
   layers:
   - Default
   - TransparentFX
