@@ -4,11 +4,24 @@ using UnityEngine;
 
 public class PlayerBasic : MonoBehaviour
 {
+    // PUBLIC
     public float speed = 1.0f;
+    public bool canMove = false;
+
+    // EXTERN
+    public GameObject camera;
+    public GameObject particles;
+
+    private void Start()
+    {
+        canMove = false;
+        particles.SetActive(false);
+    }
 
     void FixedUpdate()
     {
-        Movement();
+        if (canMove)
+            Movement();
     }
 
     private void Movement()
@@ -35,7 +48,12 @@ public class PlayerBasic : MonoBehaviour
     {
         if (collision.gameObject.tag == "Sensor_End")
         {
-            print("End!");
+            canMove = false;
+            GetComponent<Rigidbody>().velocity = Vector3.zero;
+
+            particles.SetActive(true);
+            particles.GetComponent<ParticleSystem>().time = 0;
+            camera.GetComponent<CameraScript>().Win();
         }
     }
 }

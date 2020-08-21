@@ -9,9 +9,7 @@ public class HammerScript : MonoBehaviour
     
     void FixedUpdate()
     {
-        //GetComponent<Rigidbody>().angularDrag = 0.5f;
         GetComponent<Rigidbody>().maxAngularVelocity = speed;
         GetComponent<Rigidbody>().AddTorque(new Vector3(0, 0, 1) * force);
-        //transform.Rotate(new Vector3(0,0,1) * speed);
     }
 }
