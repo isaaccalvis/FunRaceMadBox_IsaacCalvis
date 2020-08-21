@@ -26,9 +26,9 @@ public class PlayerBasic : MonoBehaviour
 
     private void Start()
     {
+        score = 0;
         canMove = false;
         particles.SetActive(false);
-        score = 0;
         playAgainButton.SetActive(false);
     }
 
