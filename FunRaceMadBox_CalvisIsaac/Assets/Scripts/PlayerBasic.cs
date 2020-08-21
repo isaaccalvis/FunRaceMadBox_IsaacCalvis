@@ -30,4 +30,12 @@ public class PlayerBasic : MonoBehaviour
             GetComponent<Rigidbody>().AddForce(new Vector3(1f, 0f, 0f) * speed);
         }
     }
+
+    private void OnTriggerEnter(Collider collision)
+    {
+        if (collision.gameObject.tag == "Sensor_End")
+        {
+            print("End!");
+        }
+    }
 }
