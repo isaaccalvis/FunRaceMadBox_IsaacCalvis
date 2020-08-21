@@ -22,12 +22,14 @@ public class PlayerBasic : MonoBehaviour
     // EXTERN
     public GameObject camera;
     public GameObject particles;
+    public GameObject playAgainButton;
 
     private void Start()
     {
         canMove = false;
         particles.SetActive(false);
         score = 0;
+        playAgainButton.SetActive(false);
     }
 
     void FixedUpdate()
@@ -51,11 +53,11 @@ public class PlayerBasic : MonoBehaviour
         }
         if (Input.GetKey("a"))
         {
-            GetComponent<Rigidbody>().AddForce(new Vector3(-1f, 0f, 0f) * speed);
+            GetComponent<Rigidbody>().AddForce(new Vector3(-1f, 0f, 0f) * speed / 2);
         }
         if (Input.GetKey("d"))
         {
-            GetComponent<Rigidbody>().AddForce(new Vector3(1f, 0f, 0f) * speed);
+            GetComponent<Rigidbody>().AddForce(new Vector3(1f, 0f, 0f) * speed / 2);
         }
 
         if (!GetComponent<Rigidbody>().IsSleeping())
@@ -83,17 +85,21 @@ public class PlayerBasic : MonoBehaviour
         {
             canMove = false;
             GetComponent<Rigidbody>().velocity = Vector3.zero;
+            GetComponentInChildren<Animator>().SetBool("running", false);
 
             particles.SetActive(true);
             particles.GetComponent<ParticleSystem>().time = 0;
+
             camera.GetComponent<CameraScript>().Win();
+            
+            playAgainButton.SetActive(true);
+
         }
         if (collision.gameObject.tag == "Sensor_WinPoint")
         {
-            print("win score");
             score++;
-            Destroy(collision.gameObject);
             scoreText.text = score.ToString();
+            Destroy(collision.gameObject);
         }
     }
 }
