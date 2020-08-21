@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerBasic : MonoBehaviour
 {
@@ -26,6 +27,9 @@ public class PlayerBasic : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (transform.position.y < -4f)
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
         if (canMove)
             Movement();
     }
